@@ -6,7 +6,7 @@ import { create } from '../helper';
 
 export function user() {
     create(20, async (prisma) => {
-        await prisma.user.create({
+      await prisma.user.create({
             data: {
                 email: Random.email(),
                 password: Random.string(),

@@ -1,6 +1,12 @@
-import {user} from './seeds/user';
-import {category} from './seeds/category';
+import { user } from './seeds/user';
+import { category } from './seeds/category';
+import { article } from './seeds/article';
 
 
-user()
-category()
+async function run() {
+    user()
+   await category()
+    article()
+}
+
+run()
