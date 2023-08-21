@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { PrismaClient } from '@prisma/client'; //nest 自带的管道
 import { HandleIntPipe } from './handleInt/handleInt.pipe';
 import { HandleBodyPipe } from './handle-body/handle-body.pipe';
+import CreateArticleDto from './dto/create.article.dto';
 
 @Controller()
 export class AppController {
@@ -24,7 +25,7 @@ export class AppController {
   }
 
   @Post('store')
-  add(@Body(HandleBodyPipe) dto: Record<string, any>) {
+  add(@Body(HandleBodyPipe) dto: CreateArticleDto) {
     return dto
   }
 }
