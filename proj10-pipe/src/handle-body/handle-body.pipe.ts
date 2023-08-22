@@ -1,5 +1,5 @@
-import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import {plainToInstance} from 'class-transformer';
+import { ArgumentMetadata, BadRequestException, HttpException, HttpStatus, Injectable, PipeTransform } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
 @Injectable()
@@ -13,13 +13,18 @@ export class HandleBodyPipe implements PipeTransform {
     // if (!value.content) {
     //   throw new BadRequestException("内容不能为空")
     // }
-    const obj = plainToInstance(metadata.metatype,value)
-    const error = await validate(obj) 
-    // console.log(error);
-    if(error.length){
-      throw new BadRequestException("表单验证错误")
+    const obj = plainToInstance(metadata.metatype, value)
+    const errors = await validate(obj)
+    if (errors.length) {
+      // throw new BadRequestException("表单验证错误")
+      const messages = errors.map(err => (
+        {
+          property: err.property,
+          msg: Object.values(err.constraints).map(obj => obj)
+        }
+      ))
+      throw new HttpException(messages, HttpStatus.BAD_REQUEST)
     }
-       
     return value;
   }
 }
