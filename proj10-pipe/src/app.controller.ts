@@ -25,7 +25,7 @@ export class AppController {
   }
 
   @Post('store')
-  async add(@Body(HandleBodyPipe) dto: CreateArticleDto) {
+  async add(@Body() dto: CreateArticleDto) {
    const article = await this.prisma.article.create({
       data: {
         content: dto.content,
