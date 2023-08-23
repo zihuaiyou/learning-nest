@@ -32,7 +32,7 @@ export class AppController {
         title: dto.title,
       }
     })
-    console.log(article);
+    // console.log(article);
     return dto
   }
 }

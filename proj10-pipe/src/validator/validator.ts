@@ -11,7 +11,7 @@ export class Validator extends ValidationPipe {
                 obj.constraints[key] = obj.property + '-' + obj.constraints[key]
             }
         })
-        console.log(errors);
+        // console.log(errors);
         return errors
     };
 }
