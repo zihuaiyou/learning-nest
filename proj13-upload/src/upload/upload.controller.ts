@@ -1,10 +1,10 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
 @Controller('upload')
 export class UploadController {
     constructor(){}
-    @Post('image')
+    @Get('image')
     upload(){
-        return 
+        return 123
     }
 }
