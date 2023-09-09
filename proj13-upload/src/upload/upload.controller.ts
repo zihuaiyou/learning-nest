@@ -1,10 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('upload')
 export class UploadController {
-    constructor(){}
-    @Get('image')
-    upload(){
-        return 123
+  constructor() {}
+  @Post('image')
+  @UseInterceptors(FileInterceptor('file'))
+    upload(@UploadedFile() file:Express.Multer.File){
+        return file.originalname
     }
 }
