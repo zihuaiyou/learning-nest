@@ -1,5 +1,5 @@
 import { Controller, Post, UploadedFile } from '@nestjs/common';
-import { Upload, fileFilter } from 'src/decorator/upload.decorator';
+import { ImageUpload, PdfUpload } from 'src/decorator/upload.decorator';
 
 @Controller('upload')
 export class UploadController {
@@ -18,13 +18,19 @@ export class UploadController {
   // )
   // )
   // 自定义装饰器
-  @Upload('file', {
-    limits: { fileSize: Math.pow(1024, 2) },
-    fileFilter: fileFilter('image'),
-  })
-  upload(@UploadedFile() file: Express.Multer.File) {
+  // @Upload('file', {
+  //   limits: { fileSize: Math.pow(1024, 2) },
+  //   fileFilter: fileFilter('image'),
+  // })
+  @ImageUpload()
+  image(@UploadedFile() file: Express.Multer.File) {
     // console.log(file.mimetype);
     // image/jpeg
+    return file;
+  }
+  @Post('document')
+  @PdfUpload()
+  document(@UploadedFile() file: Express.Multer.File) {
     return file;
   }
 }
