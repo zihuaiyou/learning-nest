@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import {
   registerDecorator,
   ValidationOptions,
@@ -26,7 +25,7 @@ export function IsConfirmedRule(
           //   },
           // });
           // return !Boolean(res);
-          return Boolean(value === args.object[`${args.property}_confirmed`])
+          return Boolean(value === args.object[`${args.property}_confirmed`]);
         },
       },
     });
