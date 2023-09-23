@@ -20,6 +20,6 @@ export class AuthService {
     return this.token(user);
   }
   private async token({ id, name }) {
-    return await this.jwt.signAsync({ sub: id, name });
+    return { token: await this.jwt.signAsync({ sub: id, name }) };
   }
 }
