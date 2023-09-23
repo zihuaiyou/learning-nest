@@ -12,6 +12,6 @@ export class AuthController {
   }
   @Post('login')
   login(@Body() dto: LoginDto) {
-    return 456;
+    return this.auth.login(dto);
   }
 }
