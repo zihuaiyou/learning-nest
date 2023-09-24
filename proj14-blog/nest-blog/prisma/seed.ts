@@ -11,7 +11,7 @@ async function run() {
     },
   });
 
-  for (let index = 0; index < 10; index++) {
+  for (let index = 0; index < 50; index++) {
     await prisma.article.create({
       data: {
         title: Random.ctitle(5, 10),
