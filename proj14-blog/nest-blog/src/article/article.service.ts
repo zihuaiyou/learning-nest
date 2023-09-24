@@ -45,8 +45,17 @@ export class ArticleService {
     return article;
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`;
+  async update(id: number, dto: UpdateArticleDto) {
+    const article = await this.prisma.article.update({
+      where: {
+        id,
+      },
+      data: {
+        title: dto.title,
+        content: dto.content,
+      },
+    });
+    return article;
   }
 
   async remove(id: number) {
