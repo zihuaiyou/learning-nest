@@ -10,8 +10,14 @@ export class ArticleService {
     private readonly prisma: PrismaService,
     private readonly config: ConfigService,
   ) {}
-  create(createArticleDto: CreateArticleDto) {
-    return 'This action adds a new article';
+  async create(dto: CreateArticleDto) {
+    const article = await this.prisma.article.create({
+      data: {
+        title: dto.title,
+        content: dto.content,
+      },
+    });
+    return article;
   }
 
   async findAll(page = 1) {
@@ -30,18 +36,24 @@ export class ArticleService {
         data: articles,
       },
     };
-    // return articles;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    const article = await this.prisma.article.findFirst({
+      where: { id },
+    });
+    return article;
   }
 
   update(id: number, updateArticleDto: UpdateArticleDto) {
     return `This action updates a #${id} article`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} article`;
+  async remove(id: number) {
+    const article = await this.prisma.article.delete({
+      where: { id },
+    });
+    return article;
+    // return `This action removes a #${id} article`;
   }
 }
