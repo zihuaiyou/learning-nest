@@ -15,6 +15,7 @@ export class ArticleService {
       data: {
         title: dto.title,
         content: dto.content,
+        categoryId:+dto.categoryId
       },
     });
     return article;
@@ -53,6 +54,7 @@ export class ArticleService {
       data: {
         title: dto.title,
         content: dto.content,
+        categoryId:dto.categoryId
       },
     });
     return article;
