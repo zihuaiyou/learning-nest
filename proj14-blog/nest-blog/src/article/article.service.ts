@@ -65,6 +65,5 @@ export class ArticleService {
       where: { id },
     });
     return article;
-    // return `This action removes a #${id} article`;
   }
 }
