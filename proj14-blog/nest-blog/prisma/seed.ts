@@ -8,6 +8,7 @@ async function run() {
     data: {
       name: 'zihyou1996',
       password: await hash('19960808'),
+      role:'admin'
     },
   });
 
