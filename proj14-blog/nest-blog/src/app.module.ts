@@ -4,6 +4,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ArticleModule } from './article/article.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CategoryModule } from './category/category.module';
       isGlobal: true,
     }),
     CategoryModule,
+    UploadModule,
   ],
 })
 export class AppModule {}

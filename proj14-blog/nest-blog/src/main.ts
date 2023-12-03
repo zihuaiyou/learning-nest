@@ -6,9 +6,11 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useStaticAssets('uploads', { prefix: '/uploads' });
   app.useGlobalPipes(new Validate());
   app.useGlobalInterceptors(new TransformInterceptor());
-  app.setGlobalPrefix('api')
+  app.setGlobalPrefix('api');
+
   await app.listen(3000);
 }
 bootstrap();
