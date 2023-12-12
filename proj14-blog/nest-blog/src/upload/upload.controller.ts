@@ -7,8 +7,6 @@ export class UploadController {
   @Post('image')
   @ImageUpload()
   image(@UploadedFile() file: Express.Multer.File) {
-    console.log(123);
-
     return file;
   }
 }
